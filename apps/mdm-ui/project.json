@@ -1,0 +1,38 @@
+{
+  "root": "apps/mdm-ui",
+  "projectType": "application",
+  "sourceRoot": "apps/mdm-ui/src",
+  "targets": {
+    "build": {
+      "executor": "nx-vue3-vite:build-app",
+      "options": {
+        "dist": "dist/apps/mdm-ui"
+      }
+    },
+    "serve": {
+      "executor": "nx-vue3-vite:dev-server"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/mdm-ui"],
+      "options": {
+        "jestConfig": "apps/mdm-ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "e2e": {
+      "executor": "nx-vue3-vite:cypress",
+      "options": {
+        "cypressConfig": "apps/mdm-ui/cypress.json",
+        "testingType": "component"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/mdm-ui/**/*.{js,jsx,ts,tsx,vue}"]
+      }
+    }
+  },
+  "tags": []
+}
