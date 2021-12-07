@@ -8,6 +8,10 @@
     </div>
     <Logo />
     <div v-html="$t('generated')" />
+      <span>apiData:</span>
+      <pre>
+        {{ apiData }}
+      </pre>
     <transition name="hide">
       <Cookies v-if="!cookiesAccepted" />
     </transition>
@@ -15,9 +19,23 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '@app/store';
+import { ref, onBeforeMount } from 'vue'
+import axios from "axios"
 
-const { cookiesAccepted } = useStore();
+import { useStore } from '@app/store'
+import { TestData } from '@multi-app/general-types'
+
+const { cookiesAccepted } = useStore()
+
+let apiData = ref<TestData>()
+
+onBeforeMount( async () => {
+  await axios.get<TestData[]>('http://localhost:3333/api/')
+  .then(res => {
+    apiData.value = res.data
+  })
+})
+
 </script>
 
 <style lang="postcss">

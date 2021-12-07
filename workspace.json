@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "general-types": "libs/general-types",
     "mdm": "apps/mdm",
     "mdm-ui": "apps/mdm-ui"
   }
